@@ -328,6 +328,12 @@ function ProductCard({ product, onOpenInterest }) {
             New drop
           </span>
         )}
+        <span
+          className="absolute top-3 right-3 text-[10.5px] px-2.5 py-1 rounded-full font-extrabold uppercase tracking-wider shadow-sm"
+          style={{ background: tokens.card, color: tokens.accent, border: `1px solid ${tokens.accent}40` }}
+        >
+          ⚡ +299 XP
+        </span>
       </div>
 
       <div className="p-5 flex flex-col flex-1">

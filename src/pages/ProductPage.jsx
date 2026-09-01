@@ -58,15 +58,15 @@ function Gallery({ images, name }) {
 
   if (!list.length) {
     return (
-      <div className="w-full rounded-2xl flex items-center justify-center text-6xl"
-        style={{ height: 380, background: tokens.paperSoft }}>🚀</div>
+      <div className="w-full rounded-2xl flex items-center justify-center text-6xl h-[300px] sm:h-[380px] md:h-[420px]"
+        style={{ background: tokens.paperSoft }}>🚀</div>
     );
   }
 
   return (
     <div className="relative rounded-2xl overflow-hidden" style={{ background: tokens.paperSoft }}>
       <img src={list[idx]} alt={`${name} — image ${idx + 1}`}
-        className="w-full object-cover" style={{ height: 380 }} />
+        className="w-full object-cover h-[300px] sm:h-[380px] md:h-[420px]" />
       {list.length > 1 && (
         <>
           <button onClick={prev}
@@ -217,7 +217,7 @@ export default function ProductPage() {
         {!loading && product && (
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
             {/* LEFT: Gallery */}
-            <div className="sticky top-24">
+            <div className="static md:sticky md:top-24 mb-6 md:mb-0">
               <Gallery images={product.images || [product.thumbnail_url].filter(Boolean)} name={product.name} />
 
               {/* Thumbnails */}
@@ -275,6 +275,27 @@ export default function ProductPage() {
                   style={{ borderColor: tokens.line, color: tokens.inkMuted }}>
                   <Share2 size={13} /> {copied ? "Copied!" : "Share"}
                 </button>
+              </div>
+
+              {/* 299 XP Reward Banner */}
+              <div className="mb-6 p-4 rounded-2xl border flex items-center gap-3.5 shadow-sm"
+                style={{ background: "#FBF7EE", borderColor: `${tokens.accent}40` }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-[15px] shadow-sm"
+                  style={{ background: tokens.accent, color: "#fff" }}>
+                  ⚡
+                </div>
+                <div>
+                  <p className="text-[13.5px] font-bold flex items-center gap-2" style={{ color: tokens.ink }}>
+                    <span>Earn +299 XP Points</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold"
+                      style={{ background: tokens.accentSoft, color: tokens.accent }}>
+                      ISH App Reward
+                    </span>
+                  </p>
+                  <p className="text-[12px] mt-0.5" style={{ color: tokens.inkMuted, lineHeight: 1.5 }}>
+                    Every user earns <strong style={{ color: tokens.ink }}>299 XP points</strong> on the official Indian Space Hub app when registering interest or ordering this space drop!
+                  </p>
+                </div>
               </div>
 
               {/* Description */}

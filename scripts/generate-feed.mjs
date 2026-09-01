@@ -37,13 +37,14 @@ function buildFeedItem(p) {
   const safeSlug = encodeURI(p.slug || "");
   const link = `${STORE_URL}/#/product/${safeSlug}`;
   const sizes = p.available_sizes || [];
+  const baseId = `ish_prod_${p.id || String(p.slug).slice(0, 30)}`;
 
   if (sizes.length > 0) {
     return sizes
       .map(
         (size) => `
   <item>
-    <g:id>${escape(p.slug)}_${size}</g:id>
+    <g:id>${escape(baseId)}_${size}</g:id>
     <g:title>${escape(p.name)}</g:title>
     <g:description>${escape(p.description || p.name)}</g:description>
     <g:link>${escape(link)}</g:link>
@@ -52,7 +53,7 @@ function buildFeedItem(p) {
     <g:price>${price} INR</g:price>
     <g:brand>${escape(p.brand || "Indian Space Hub")}</g:brand>
     <g:condition>new</g:condition>
-    <g:item_group_id>${escape(p.slug)}</g:item_group_id>
+    <g:item_group_id>${escape(baseId)}</g:item_group_id>
     <g:size>${escape(size)}</g:size>
     <g:size_type>regular</g:size_type>
     <g:size_system>IN</g:size_system>
@@ -73,7 +74,7 @@ function buildFeedItem(p) {
 
   return `
   <item>
-    <g:id>${escape(p.slug)}</g:id>
+    <g:id>${escape(baseId)}</g:id>
     <g:title>${escape(p.name)}</g:title>
     <g:description>${escape(p.description || p.name)}</g:description>
     <g:link>${escape(link)}</g:link>

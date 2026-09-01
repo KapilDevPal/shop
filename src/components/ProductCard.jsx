@@ -87,10 +87,15 @@ export function InterestModal({ product, selectedSize, onClose, onSubmit }) {
             <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: 20, fontWeight: 700, color: tokens.ink, marginBottom: 6 }}>
               Register Your Interest
             </h3>
-            <p className="text-[13px] mb-5" style={{ color: tokens.inkMuted, lineHeight: 1.6 }}>
+            <p className="text-[13px] mb-3" style={{ color: tokens.inkMuted, lineHeight: 1.6 }}>
               Help unlock <strong style={{ color: tokens.ink }}>{product.name}</strong>
               {selectedSize ? ` (Size ${selectedSize})` : ""}. You'll be notified when pre-orders open.
             </p>
+            <div className="mb-4 p-2.5 rounded-xl text-[12px] font-semibold flex items-center gap-2 border"
+              style={{ background: tokens.accentSoft, color: tokens.accent, borderColor: `${tokens.accent}30` }}>
+              <span>⚡</span>
+              <span>Bonus: Earn 299 XP Points on Indian Space Hub App upon submission!</span>
+            </div>
             {error && (
               <p className="text-[12.5px] mb-4 px-3 py-2 rounded-lg" style={{ background: "#F7E9E6", color: tokens.error }}>
                 {error}
@@ -152,6 +157,10 @@ export function ProductCard({ product, onOpenInterest }) {
               New drop
             </span>
           )}
+          <span className="absolute top-3 right-3 text-[10.5px] px-2.5 py-1 rounded-full font-extrabold uppercase tracking-wider shadow-sm"
+            style={{ background: tokens.card, color: tokens.accent, border: `1px solid ${tokens.accent}40` }}>
+            ⚡ +299 XP
+          </span>
         </div>
       </Link>
 
