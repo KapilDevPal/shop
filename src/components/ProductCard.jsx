@@ -15,8 +15,16 @@ export function InterestModal({ product, selectedSize, onClose, onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      setError("Enter a valid email address.");
+    if (!form.name || !form.name.trim()) {
+      setError("Please enter your full name.");
+      return;
+    }
+    if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (!form.phone || form.phone.trim().length < 7) {
+      setError("Please enter a valid phone / WhatsApp number.");
       return;
     }
     setSubmitting(true);
@@ -26,9 +34,9 @@ export function InterestModal({ product, selectedSize, onClose, onSubmit }) {
         product_slug: product.slug,
         selected_size: selectedSize || undefined,
         quantity: 1,
-        name: form.name,
-        email: form.email,
-        phone: form.phone || undefined,
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
       });
       setSubmitted(true);
     } catch (err) {
@@ -66,7 +74,7 @@ export function InterestModal({ product, selectedSize, onClose, onSubmit }) {
               Interest Registered 🚀
             </h3>
             <p className="text-[13.5px]" style={{ color: tokens.inkMuted, lineHeight: 1.6 }}>
-              We'll email <strong style={{ color: tokens.ink }}>{form.email}</strong> when{" "}
+              We'll email <strong style={{ color: tokens.ink }}>{form.email}</strong> and SMS/WhatsApp <strong style={{ color: tokens.ink }}>{form.phone}</strong> when{" "}
               <strong style={{ color: tokens.ink }}>{product.name}</strong> is ready to ship
               {selectedSize ? ` in size ${selectedSize}` : ""}.
             </p>
@@ -97,7 +105,7 @@ export function InterestModal({ product, selectedSize, onClose, onSubmit }) {
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl text-[13.5px] outline-none border"
                 style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }} />
-              <input type="tel" placeholder="Phone / WhatsApp (optional)" value={form.phone}
+              <input type="tel" required placeholder="Phone / WhatsApp number *" value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl text-[13.5px] outline-none border"
                 style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }} />
@@ -112,6 +120,7 @@ export function InterestModal({ product, selectedSize, onClose, onSubmit }) {
       </div>
     </div>
   );
+
 }
 
 /**

@@ -49,7 +49,7 @@ export default function ContactPage() {
           We'd love to hear from you — whether it's a product question, partnership idea, or just saying hello.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {/* Email card */}
           <a
             href="mailto:crew@indianspacehub.com"
@@ -62,20 +62,20 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="text-[13px] font-semibold uppercase tracking-wider mb-1" style={{ color: tokens.inkFaint }}>
-                Email Us
+                Email Support
               </p>
-              <p className="text-[17px] font-bold group-hover:underline" style={{ color: tokens.ink }}>
+              <p className="text-[16px] font-bold group-hover:underline" style={{ color: tokens.ink }}>
                 crew@indianspacehub.com
               </p>
               <p className="text-[13px] mt-1.5" style={{ color: tokens.inkMuted }}>
-                For product queries, bulk orders, partnerships, and media requests.
+                Product queries, bulk orders, and partnerships.
               </p>
             </div>
           </a>
 
-          {/* Main Hub card */}
+          {/* Instagram Card */}
           <a
-            href="https://indianspacehub.com"
+            href="https://www.instagram.com/isro.unoffical"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col gap-4 p-7 rounded-2xl border transition-all hover:shadow-md group"
@@ -83,21 +83,47 @@ export default function ContactPage() {
           >
             <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
               style={{ background: tokens.paperSoft }}>
-              <ExternalLink size={22} style={{ color: tokens.ink }} />
+              <Instagram size={22} style={{ color: tokens.ink }} />
             </div>
             <div>
               <p className="text-[13px] font-semibold uppercase tracking-wider mb-1" style={{ color: tokens.inkFaint }}>
-                Main Platform
+                Instagram
               </p>
-              <p className="text-[17px] font-bold group-hover:underline" style={{ color: tokens.ink }}>
-                indianspacehub.com
+              <p className="text-[16px] font-bold group-hover:underline" style={{ color: tokens.ink }}>
+                @isro.unoffical
               </p>
               <p className="text-[13px] mt-1.5" style={{ color: tokens.inkMuted }}>
-                Space news, ISRO mission tracking, launches, and the knowledge platform.
+                Follow active mission drops and behind the scenes.
+              </p>
+            </div>
+          </a>
+
+          {/* LinkedIn Card */}
+          <a
+            href="https://www.linkedin.com/company/isro-indian-space-hub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col gap-4 p-7 rounded-2xl border transition-all hover:shadow-md group"
+            style={{ background: tokens.card, borderColor: tokens.line }}
+          >
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
+              style={{ background: tokens.paperSoft }}>
+              <Linkedin size={22} style={{ color: tokens.ink }} />
+            </div>
+            <div>
+              <p className="text-[13px] font-semibold uppercase tracking-wider mb-1" style={{ color: tokens.inkFaint }}>
+                LinkedIn
+              </p>
+              <p className="text-[16px] font-bold group-hover:underline" style={{ color: tokens.ink }}>
+                Indian Space Hub
+              </p>
+              <p className="text-[13px] mt-1.5" style={{ color: tokens.inkMuted }}>
+                Connect with our team & space community updates.
               </p>
             </div>
           </a>
         </div>
+
 
         {/* FAQ */}
         <section>

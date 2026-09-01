@@ -1,15 +1,21 @@
 # Indian Space Hub Store — Official Merchandise Platform
 
-> The official merchandise, apparel, scale models, and space collectibles store for Indian Space Hub (`indianspacehub.com`), hosted at `shop.indianspacehub.com`.
+> **Indian Space Hub Tagline**: The New Era of Indian Space  
+> **Merchandise Tagline**: Wear India's Space Story.
 
 ## Overview
-Indian Space Hub Store offers authentic ISRO-inspired space merchandise, apparel (sweatshirts, hoodies, t-shirts), telescopes, scale model rockets (Gaganyaan, Chandrayaan, LVM3/GSLV Mk III), and space toys. The platform operates on a community-driven interest threshold system: users register interest for upcoming drops, and production/shipping unlocks once a minimum pre-registration target is reached.
+Indian Space Hub Store (`shop.indianspacehub.com`) offers authentic ISRO-inspired space merchandise, apparel (sweatshirts, hoodies, t-shirts), telescopes, scale model rockets (Gaganyaan, Chandrayaan, LVM3/GSLV Mk III), and space toys. The platform operates on a community-driven interest threshold system: users register interest for upcoming drops with mandatory name, email, and phone number. Production & shipping unlock once a minimum pre-registration target is reached.
 
 ## Domain & System Architecture
 - Primary Store Domain: https://shop.indianspacehub.com
 - Main Platform: https://indianspacehub.com
 - Target Audience: Space enthusiasts, astronomy lovers, ISRO mission fans in India & worldwide.
 - Currency: Indian Rupee (INR / ₹)
+- Official Support Email: crew@indianspacehub.com
+
+## Social Channels
+- Instagram: https://www.instagram.com/isro.unoffical
+- LinkedIn: https://www.linkedin.com/company/isro-indian-space-hub/
 
 ## Core Offerings
 - **ISRO Mission Apparel**: Sweatshirts, oversized t-shirts, and limited edition hoodies celebrating Gaganyaan, Chandrayaan, and Aditya-L1 missions.
@@ -20,11 +26,13 @@ Indian Space Hub Store offers authentic ISRO-inspired space merchandise, apparel
 ## How Interest Registration Works
 1. Visitors browse active merchandise drops on `shop.indianspacehub.com`.
 2. Product cards show live goal progress (e.g. 38/50 interest votes).
-3. Users click "Express Interest" to select a size and register name/email.
-4. When `min_interest_required` target is reached, pre-order & shipping unlock and registered users receive notification emails.
+3. Users click "Express Interest" to select a size and register mandatory name, email address, and phone/WhatsApp number.
+4. When `min_interest_required` target is reached, pre-order & shipping unlock and registered users receive notification emails & SMS updates.
 
 ## Key Links & Resources
 - [Shop Homepage](https://shop.indianspacehub.com/): Browse active merchandise catalog
 - [Full LLM Knowledge Base](https://shop.indianspacehub.com/llms-full.txt): Detailed product specs, FAQ, and platform background
 - [Indian Space Hub App](https://play.google.com/store/apps/details?id=com.kapildevpal.indiaspacehub): Official Android app on Google Play
 - [Main Website](https://indianspacehub.com/): Space news, mission tracking, and knowledge platform
+- [Instagram Page](https://www.instagram.com/isro.unoffical): Official Instagram community (@isro.unoffical)
+- [LinkedIn Page](https://www.linkedin.com/company/isro-indian-space-hub/): Official LinkedIn company page

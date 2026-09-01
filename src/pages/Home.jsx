@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
-import { ArrowRight, RefreshCw, Sparkles } from "lucide-react";
-import Nav from "../components/Nav.jsx";
+import { ArrowRight, RefreshCw, Sparkles, Instagram, Linkedin } from "lucide-react";
+import Nav, { INSTAGRAM_URL, LINKEDIN_URL } from "../components/Nav.jsx";
 import { ProductCard, InterestModal } from "../components/ProductCard.jsx";
 import { useMerchandise } from "../hooks/useMerchandise.js";
 import { tokens, PLAY_STORE_URL } from "../tokens.js";
@@ -55,31 +55,32 @@ export default function Home() {
       />
 
       {/* Hero */}
-      <section className="max-w-6xl mx-auto px-6 md:px-8 pt-12 pb-12 md:pt-16 md:pb-14">
+      <section className="max-w-6xl mx-auto px-6 md:px-8 pt-10 pb-10 md:pt-14 md:pb-12">
         <div className="max-w-2xl">
           <div
-            className="inline-flex items-center gap-2 text-[12px] px-3.5 py-1.5 rounded-full mb-6 border"
+            className="inline-flex items-center gap-2 text-[12px] px-3.5 py-1.5 rounded-full mb-5 border"
             style={{ background: tokens.accentSoft, color: tokens.accent, borderColor: `${tokens.accent}30` }}
           >
             <Sparkles size={13} />
-            <span className="font-semibold tracking-wide uppercase text-[10.5px]">Community Powered Store</span>
+            <span className="font-semibold tracking-wide uppercase text-[10.5px]">The New Era of Indian Space</span>
           </div>
           <h1
-            className="text-[2.2rem] leading-[1.12] sm:text-4xl md:text-[2.85rem] mb-5"
+            className="text-[2.2rem] leading-[1.12] sm:text-4xl md:text-[2.85rem] mb-4"
             style={{ fontFamily: "'Fraunces', serif", color: tokens.ink, fontWeight: 700, letterSpacing: "-0.02em" }}
           >
             Wear India's Space Story.
           </h1>
-          <p className="text-[15px] md:text-[16px] mb-8" style={{ color: tokens.inkMuted, lineHeight: 1.7, maxWidth: "33rem" }}>
-            ISRO-inspired apparel, scale model launch vehicles, and stargazing gear. Products unlock once community interest goals are reached.
+          <p className="text-[15px] md:text-[16px] mb-7" style={{ color: tokens.inkMuted, lineHeight: 1.7, maxWidth: "33rem" }}>
+            Official ISRO-inspired apparel, scale model launch vehicles, and stargazing gear by Indian Space Hub. Products unlock for production once community interest goals are reached.
           </p>
           <a href="#collection"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[13.5px] font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[13.5px] font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
             style={{ background: tokens.ink, color: tokens.paper }}>
             Explore Collection <ArrowRight size={14} />
           </a>
         </div>
       </section>
+
 
       {/* Product grid */}
       <section id="collection" className="pb-24 md:pb-32">
@@ -147,19 +148,40 @@ export default function Home() {
               <a href="/#/privacy" style={{ color: tokens.inkMuted }}>Privacy</a>
               <a href="/sitemap.xml" target="_blank" style={{ color: tokens.inkMuted }}>Sitemap</a>
             </div>
-            <span className="text-[12px]" style={{ color: tokens.inkFaint }}>
-              © {new Date().getFullYear()} Indian Space Hub
-            </span>
+
+            <div className="flex items-center gap-3">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="p-2 rounded-xl border hover:bg-stone-100 transition-colors"
+                style={{ borderColor: tokens.line, color: tokens.ink }}
+              >
+                <Instagram size={16} />
+              </a>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="p-2 rounded-xl border hover:bg-stone-100 transition-colors"
+                style={{ borderColor: tokens.line, color: tokens.ink }}
+              >
+                <Linkedin size={16} />
+              </a>
+            </div>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-7" style={{ borderTop: `1px solid ${tokens.line}` }}>
             <p className="text-[13px]" style={{ color: tokens.inkMuted }}>
-              Also home to the Indian Space Hub app — ISRO missions, launches and space news.
+              Indian Space Hub — <em>The New Era of Indian Space</em>. ISRO missions, launches and space merchandise.
             </p>
             <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label="Get Indian Space Hub on Google Play">
               <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
                 alt="Get it on Google Play" style={{ height: 54, display: "block" }} />
             </a>
           </div>
+
         </div>
       </footer>
 
