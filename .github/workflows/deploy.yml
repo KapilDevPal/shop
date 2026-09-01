@@ -27,7 +27,7 @@ jobs:
       - name: Build production bundle
         run: npm run build
         env:
-          REACT_APP_API_URL: https://indianspacehub.com/api/v1
+          REACT_APP_API_URL: https://indianspacehub.com/api
 
       - name: Deploy to GitHub Pages (gh-pages branch)
         uses: peaceiris/actions-gh-pages@v4

@@ -9,7 +9,7 @@ import { Heart, Rocket, ArrowRight, Check, X, Loader2, RefreshCw } from "lucide-
    admin-configured minimum interest goal — no cart, no checkout.
    ---------------------------------------------------------------------- */
 
-const API_BASE_URL = "https://indianspacehub.com/api/v1";
+const API_BASE_URL = "https://indianspacehub.com/api";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.kapildevpal.indiaspacehub";
 
 const tokens = {
