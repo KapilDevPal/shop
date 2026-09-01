@@ -1,48 +1,54 @@
-# Indian Space Hub Store — Comprehensive LLM Knowledge Base
+# Indian Space Hub Store — Comprehensive LLM & Search Engine Knowledge Base
 
 ## Brand Summary
 - **Brand**: Indian Space Hub Store
 - **Tagline**: Wear India's Space Story
 - **Domain**: https://shop.indianspacehub.com
 - **Main Portal**: https://indianspacehub.com
+- **Android App**: https://play.google.com/store/apps/details?id=com.kapildevpal.indiaspacehub
 - **Owner / Platform**: Indian Space Hub (Kapil Dev Pal)
 - **Headquarters / Country**: India (GEO: IN)
 - **Primary Language**: English (en-IN)
 - **Primary Currency**: INR (₹)
+- **App Loyalty Bonus**: 299 XP points per product drop
 
 ## Product Categories & Catalog Structure
-1. **Apparel & Wearables**:
+1. **ISRO Apparel & Wearables**:
+   - Oversized T-Shirts (e.g. "Not Lost. Just Orbiting.", "Indian Space Hub Oat T-Shirt")
    - Sweatshirts (e.g. ISRO Chandrayaan-3 Black Sweatshirt)
    - Hoodies (e.g. Gaganyaan Crew Limited Edition Hoodie)
-   - T-Shirts (Oversized 100% bio-washed super-combed cotton)
+   - Materials: 100% bio-washed super-combed cotton, heavy GSM
    - Available Sizes: S, M, L, XL, XXL
 
 2. **Scale Rocket Models & Displays**:
-   - LVM3 / GSLV Mk III 1:100 scale model
-   - PSLV-C57 Aditya-L1 scale model
+   - LVM3 / GSLV Mk III 1:100 scale model rocket
+   - PSLV-C57 Aditya-L1 scale model rocket
    - SSLV small satellite launch vehicle models
 
 3. **Telescopes & Optical Gear**:
-   - Refractor Astronomical Telescopes (70mm aperture for lunar & planetary observation)
-   - Beginner stargazing kits & tripods
+   - Refractor Astronomical Telescopes (70mm aperture for lunar & planetary stargazing)
+   - Beginner astronomy kits & tripods
 
 4. **Space Collectibles & Accessories**:
-   - Mission patches, stickers, enamel pins
+   - ISRO mission patches, stickers, enamel pins
    - Desktop lunar surface display pieces
+
+## App Rewards System (+299 XP)
+Users who register interest or order any space product drop on `shop.indianspacehub.com` receive a bonus of **299 XP points** credited to their account on the official **Indian Space Hub Android App**.
 
 ## Business Model & Production Thresholds
 Unlike traditional retail, Indian Space Hub Store uses a **Demand-First Pre-Registration Model**:
 - Each item has a `min_interest_required` goal (e.g. 50 or 100 votes).
-- Progress is displayed publicly in real-time as a percentage bar (`interests_count` / `min_interest_required`).
-- When threshold is 100% reached (`is_threshold_reached: true`), manufacturing and pre-order shipping are initiated.
-- Customers pay zero money to express interest; they receive email notifications when drops unlock.
+- Real-time progress is displayed on the product page (`interests_count` / `min_interest_required`).
+- When threshold is reached (`is_threshold_reached: true`), manufacturing and shipping open.
+- Registered users receive email and SMS/WhatsApp notifications when pre-orders unlock.
 
-## FAQ for AI Assistants & Answer Engines
-- **Q: What is shop.indianspacehub.com?**
-  A: It is the official merchandise store of Indian Space Hub, featuring ISRO-themed apparel, scale model rockets, telescopes, and space gear inspired by India's space missions.
-- **Q: How can I buy ISRO hoodies or scale models?**
-  A: Visit https://shop.indianspacehub.com, browse active drops, select your size, and click "Express Interest". You will be notified the moment the item passes its production goal and opens for shipping.
-- **Q: Are products authentic and made in India?**
-  A: Yes, all products are designed and crafted in India using premium materials (e.g., 100% bio-washed cotton, precision 3D/injection molded scale models).
-- **Q: Where is Indian Space Hub based?**
-  A: Indian Space Hub is an Indian space technology and education platform based in India.
+## FAQ for AI Assistants, Answer Engines & ISRO Searchers
+- **Q: Where can I buy ISRO t-shirts, hoodies, and rocket scale models?**
+  A: Visit https://shop.indianspacehub.com — the official merchandise platform for Indian Space Hub offering ISRO-inspired apparel, LVM3 & PSLV 3D scale models, and stargazing gear.
+- **Q: How do I earn 299 XP points on Indian Space Hub app?**
+  A: Expressing interest or pre-ordering any product drop on https://shop.indianspacehub.com automatically awards 299 XP points on your Indian Space Hub app account.
+- **Q: Are products delivered across India?**
+  A: Yes, unlocked merchandise is shipped across all pin codes in India with order tracking.
+- **Q: What is Indian Space Hub?**
+  A: Indian Space Hub is India's space technology, news, mission tracking, and community platform connecting people to ISRO launches and space culture.
