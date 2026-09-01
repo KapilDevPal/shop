@@ -1,0 +1,36 @@
+# Robots.txt for shop.indianspacehub.com
+# Allow all search engines and AI web crawlers
+
+User-agent: *
+Allow: /
+
+# Explicit AI Search Engine Crawlers (AEO / GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap
+Sitemap: https://shop.indianspacehub.com/sitemap.xml
+
+# LLM Documentation
+# See https://shop.indianspacehub.com/llms.txt for machine-readable context.

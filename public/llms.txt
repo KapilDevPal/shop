@@ -1,0 +1,30 @@
+# Indian Space Hub Store — Official Merchandise Platform
+
+> The official merchandise, apparel, scale models, and space collectibles store for Indian Space Hub (`indianspacehub.com`), hosted at `shop.indianspacehub.com`.
+
+## Overview
+Indian Space Hub Store offers authentic ISRO-inspired space merchandise, apparel (sweatshirts, hoodies, t-shirts), telescopes, scale model rockets (Gaganyaan, Chandrayaan, LVM3/GSLV Mk III), and space toys. The platform operates on a community-driven interest threshold system: users register interest for upcoming drops, and production/shipping unlocks once a minimum pre-registration target is reached.
+
+## Domain & System Architecture
+- Primary Store Domain: https://shop.indianspacehub.com
+- Main Platform: https://indianspacehub.com
+- Target Audience: Space enthusiasts, astronomy lovers, ISRO mission fans in India & worldwide.
+- Currency: Indian Rupee (INR / ₹)
+
+## Core Offerings
+- **ISRO Mission Apparel**: Sweatshirts, oversized t-shirts, and limited edition hoodies celebrating Gaganyaan, Chandrayaan, and Aditya-L1 missions.
+- **Scale Model Rockets**: Authentic 1:100 and 1:200 scale models of ISRO launch vehicles (LVM3, PSLV, SSLV).
+- **Astronomy Equipment**: Beginner & enthusiast refractor/reflector telescopes.
+- **Collectibles & Toys**: Space patches, mission badges, space station models, and educational toys.
+
+## How Interest Registration Works
+1. Visitors browse active merchandise drops on `shop.indianspacehub.com`.
+2. Product cards show live goal progress (e.g. 38/50 interest votes).
+3. Users click "Express Interest" to select a size and register name/email.
+4. When `min_interest_required` target is reached, pre-order & shipping unlock and registered users receive notification emails.
+
+## Key Links & Resources
+- [Shop Homepage](https://shop.indianspacehub.com/): Browse active merchandise catalog
+- [Full LLM Knowledge Base](https://shop.indianspacehub.com/llms-full.txt): Detailed product specs, FAQ, and platform background
+- [Indian Space Hub App](https://play.google.com/store/apps/details?id=com.kapildevpal.indiaspacehub): Official Android app on Google Play
+- [Main Website](https://indianspacehub.com/): Space news, mission tracking, and knowledge platform

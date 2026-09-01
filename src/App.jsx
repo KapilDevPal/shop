@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import { Heart, Rocket, ArrowRight, Check, X, Loader2, RefreshCw } from "lucide-react";
+import { Heart, Rocket, ArrowRight, Check, X, Loader2, RefreshCw, Search, Menu, Sparkles, ExternalLink } from "lucide-react";
 
 /* ----------------------------------------------------------------------
    INDIAN SPACE HUB STORE — live catalog pulling real merchandise + interest
@@ -84,63 +84,189 @@ function useMerchandise(category) {
 }
 
 /* --------------------------------- Nav --------------------------------- */
-function Nav({ categories, active, onChange }) {
+function Nav({ categories, active, onChange, searchQuery, onSearchChange }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-40" style={{ background: "rgba(246,244,239,0.9)", backdropFilter: "blur(10px)", borderBottom: `1px solid ${tokens.line}` }}>
-      <div className="max-w-6xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2 shrink-0">
-          <Rocket size={16} style={{ color: tokens.accent, transform: "rotate(45deg)" }} strokeWidth={1.8} />
-          <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 600, fontSize: 18, color: tokens.ink, letterSpacing: "-0.01em" }}>
-            Indian Space Hub Store
-          </span>
+    <>
+      {/* Top Banner Announcement */}
+      <div style={{ background: tokens.ink, color: tokens.paperSoft }} className="text-[11.5px] py-2 px-4 border-b border-stone-800">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="font-medium tracking-wide">
+              Official Indian Space Hub Store · Live Pre-Registration Drops
+            </span>
+          </div>
+          <a
+            href="https://indianspacehub.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1 hover:text-amber-400 transition-colors text-[11px]"
+          >
+            Visit Main Hub <ExternalLink size={10} />
+          </a>
         </div>
-        <nav className="hidden sm:flex items-center gap-1 overflow-x-auto text-[13px]">
-          {categories.map((c) => (
-            <button
-              key={c}
-              onClick={() => onChange(c)}
-              className="px-3.5 py-1.5 rounded-full whitespace-nowrap transition-colors duration-200"
-              style={
-                active === c
-                  ? { background: tokens.ink, color: tokens.paper }
-                  : { background: "transparent", color: tokens.inkMuted }
-              }
-            >
-              {c}
-            </button>
-          ))}
-        </nav>
       </div>
-    </header>
+
+      {/* Main Glassmorphic Navbar */}
+      <header
+        className="sticky top-0 z-40 transition-all duration-300"
+        style={{
+          background: "rgba(246,244,239,0.92)",
+          backdropFilter: "blur(12px)",
+          borderBottom: `1px solid ${tokens.line}`,
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-8 h-18 py-3 flex items-center justify-between gap-4">
+          {/* Brand Identity */}
+          <a href="/" className="flex items-center gap-3 shrink-0 group">
+            <div
+              className="relative overflow-hidden rounded-xl border p-1 shadow-sm transition-transform duration-300 group-hover:scale-105"
+              style={{ background: tokens.card, borderColor: tokens.line }}
+            >
+              <img src="/indian_space_hub_logo.png" alt="Indian Space Hub Logo" className="h-9 w-9 object-contain" />
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 18, color: tokens.ink, letterSpacing: "-0.02em" }}>
+                  Indian Space Hub
+                </span>
+                <span
+                  className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: tokens.accentSoft, color: tokens.accent, border: `1px solid ${tokens.accent}30` }}
+                >
+                  STORE
+                </span>
+              </div>
+              <span className="text-[11px] hidden sm:block" style={{ color: tokens.inkMuted }}>
+                Official ISRO Inspired Merchandise & Gear
+              </span>
+            </div>
+          </a>
+
+          {/* Desktop Category Navigation */}
+          <nav
+            className="hidden lg:flex items-center gap-1 p-1 rounded-full border shadow-inner"
+            style={{ background: tokens.paperSoft, borderColor: tokens.line }}
+          >
+            {categories.map((c) => (
+              <button
+                key={c}
+                onClick={() => onChange(c)}
+                className="px-4 py-1.5 rounded-full text-[12.5px] font-medium transition-all duration-200"
+                style={
+                  active === c
+                    ? { background: tokens.ink, color: tokens.paper, boxShadow: "0 2px 8px rgba(32,30,27,0.15)" }
+                    : { background: "transparent", color: tokens.inkMuted }
+                }
+              >
+                {c}
+              </button>
+            ))}
+          </nav>
+
+          {/* Right Side Controls: Search & Mobile Menu */}
+          <div className="flex items-center gap-2.5">
+            {/* Search Input */}
+            <div className="relative flex items-center">
+              <Search size={14} className="absolute left-3 pointer-events-none" style={{ color: tokens.inkFaint }} />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
+                className="pl-8 pr-7 py-1.5 rounded-full text-[12.5px] outline-none transition-all duration-200 w-36 sm:w-48 focus:w-56"
+                style={{
+                  background: tokens.card,
+                  border: `1px solid ${tokens.line}`,
+                  color: tokens.ink,
+                }}
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => onSearchChange("")}
+                  className="absolute right-2.5 p-0.5 rounded-full text-stone-400 hover:text-stone-700"
+                >
+                  <X size={12} />
+                </button>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden p-2 rounded-xl border flex items-center justify-center transition-colors"
+              style={{ background: tokens.card, borderColor: tokens.line, color: tokens.ink }}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileOpen && (
+          <div className="lg:hidden px-6 py-4 border-t space-y-3" style={{ background: tokens.card, borderColor: tokens.line }}>
+            <span className="text-[11px] font-semibold uppercase tracking-wider block" style={{ color: tokens.inkFaint }}>
+              Categories
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => {
+                    onChange(c);
+                    setMobileOpen(false);
+                  }}
+                  className="px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors"
+                  style={
+                    active === c
+                      ? { background: tokens.ink, color: tokens.paper }
+                      : { background: tokens.paperSoft, color: tokens.inkMuted, border: `1px solid ${tokens.line}` }
+                  }
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </header>
+    </>
   );
 }
 
 /* --------------------------------- Hero --------------------------------- */
 function Hero() {
   return (
-    <section className="max-w-6xl mx-auto px-6 md:px-8 pt-16 pb-14 md:pt-24 md:pb-20">
-      <div className="max-w-xl">
-        <div className="flex items-center gap-2 text-[12px] mb-6" style={{ color: tokens.inkFaint }}>
-          <span className="h-1.5 w-1.5 rounded-full" style={{ background: tokens.accent, animation: "ish-live-pulse 2s ease-in-out infinite" }} />
-          Live now — taking interest
+    <section className="max-w-6xl mx-auto px-6 md:px-8 pt-12 pb-12 md:pt-18 md:pb-16">
+      <div className="max-w-2xl">
+        <div
+          className="inline-flex items-center gap-2 text-[12px] px-3.5 py-1.5 rounded-full mb-6 border"
+          style={{ background: tokens.accentSoft, color: tokens.accent, borderColor: `${tokens.accent}30` }}
+        >
+          <Sparkles size={13} />
+          <span className="font-semibold tracking-wide uppercase text-[10.5px]">Community Powered Store</span>
         </div>
         <h1
-          className="text-[2.1rem] leading-[1.15] sm:text-4xl md:text-[2.75rem] mb-5"
-          style={{ fontFamily: "'Fraunces', serif", color: tokens.ink, fontWeight: 600, letterSpacing: "-0.01em" }}
+          className="text-[2.2rem] leading-[1.12] sm:text-4xl md:text-[2.85rem] mb-5"
+          style={{ fontFamily: "'Fraunces', serif", color: tokens.ink, fontWeight: 700, letterSpacing: "-0.02em" }}
         >
           Wear India's Space Story.
         </h1>
-        <p className="text-[15px] md:text-[16px] mb-8" style={{ color: tokens.inkMuted, lineHeight: 1.7, maxWidth: "30rem" }}>
-          Toys, apparel and collectibles inspired by India's journey into space. Nothing ships
-          until a product crosses its interest goal — mark yours below and we'll email you the
-          moment it unlocks.
+        <p className="text-[15px] md:text-[16.5px] mb-8" style={{ color: tokens.inkMuted, lineHeight: 1.7, maxWidth: "33rem" }}>
+          Explore ISRO-inspired apparel, scale model launch vehicles, and stargazing gear. Products unlock for production and shipping as soon as community interest goals are reached.
         </p>
         <a
           href="#collection"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[13.5px] transition-transform duration-200 hover:-translate-y-0.5"
-          style={{ background: tokens.ink, color: tokens.paper, fontWeight: 500 }}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[13.5px] font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+          style={{ background: tokens.ink, color: tokens.paper }}
         >
-          Browse the collection <ArrowRight size={14} />
+          Explore Collection <ArrowRight size={14} />
         </a>
       </div>
     </section>
@@ -150,7 +276,7 @@ function Hero() {
 /* --------------------------------- Category tabs (mobile) --------------------------------- */
 function CategoryTabsMobile({ categories, active, onChange }) {
   return (
-    <div className="sm:hidden max-w-6xl mx-auto px-6 flex flex-wrap gap-2 mb-8">
+    <div className="lg:hidden max-w-6xl mx-auto px-6 flex flex-wrap gap-2 mb-8">
       {categories.map((c) => (
         <button
           key={c}
@@ -179,10 +305,10 @@ function ProductCard({ product, onOpenInterest }) {
 
   return (
     <div
-      className="rounded-2xl overflow-hidden flex flex-col transition-shadow duration-300"
+      className="rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg"
       style={{ background: tokens.card, border: `1px solid ${goalReached ? tokens.accent : tokens.line}` }}
     >
-      <div className="relative" style={{ height: 190, background: tokens.paperSoft }}>
+      <div className="relative" style={{ height: 210, background: tokens.paperSoft }}>
         {product.thumbnail_url || product.images?.[0] ? (
           <img
             src={product.thumbnail_url || product.images[0]}
@@ -196,8 +322,8 @@ function ProductCard({ product, onOpenInterest }) {
         )}
         {product.is_new && (
           <span
-            className="absolute top-3 left-3 text-[10.5px] px-2.5 py-1 rounded-full"
-            style={{ background: product.color_accent || tokens.accent, color: "#fff", fontWeight: 600 }}
+            className="absolute top-3 left-3 text-[10.5px] px-2.5 py-1 rounded-full uppercase tracking-wider"
+            style={{ background: product.color_accent || tokens.accent, color: "#fff", fontWeight: 700 }}
           >
             New drop
           </span>
@@ -206,14 +332,14 @@ function ProductCard({ product, onOpenInterest }) {
 
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[11px] tracking-wide" style={{ color: tokens.inkFaint }}>
+          <span className="text-[11px] tracking-wide font-semibold uppercase" style={{ color: tokens.inkFaint }}>
             {product.eyebrow || product.category || "Merchandise"}
           </span>
-          <span className="text-[13px]" style={{ color: tokens.inkMuted }}>
+          <span className="text-[14px] font-bold" style={{ color: tokens.ink }}>
             ₹{Number(product.price).toLocaleString("en-IN")}
           </span>
         </div>
-        <h3 className="text-[14.5px] mb-1.5" style={{ color: tokens.ink, fontWeight: 500 }}>
+        <h3 className="text-[15px] mb-1.5" style={{ color: tokens.ink, fontWeight: 600 }}>
           {product.name}
         </h3>
         {product.description && (
@@ -223,15 +349,19 @@ function ProductCard({ product, onOpenInterest }) {
         )}
 
         {required > 0 && (
-          <div className="mb-4 mt-auto">
-            <div className="h-1.5 rounded-full overflow-hidden mb-2" style={{ background: tokens.paperSoft }}>
+          <div className="mb-4 mt-auto p-3 rounded-xl border" style={{ background: tokens.paperSoft, borderColor: tokens.line }}>
+            <div className="flex items-center justify-between text-[11.5px] font-semibold mb-1.5" style={{ color: tokens.ink }}>
+              <span>Target Interest Goal</span>
+              <span>{count} / {required} votes ({pct}%)</span>
+            </div>
+            <div className="h-2 rounded-full overflow-hidden mb-1.5" style={{ background: "#E2DCD0" }}>
               <div
                 className="h-full rounded-full transition-all duration-500 ease-out"
-                style={{ width: `${Math.max(pct, count > 0 ? 3 : 0)}%`, background: goalReached ? tokens.success : tokens.accent }}
+                style={{ width: `${Math.max(pct, count > 0 ? 4 : 0)}%`, background: goalReached ? tokens.success : tokens.accent }}
               />
             </div>
-            <span className="text-[11.5px]" style={{ color: goalReached ? tokens.success : tokens.inkFaint }}>
-              {goalReached ? "Goal reached — we're making this!" : `${count} of ${required} interested`}
+            <span className="text-[11px] block" style={{ color: goalReached ? tokens.success : tokens.inkMuted }}>
+              {goalReached ? "🎉 Goal reached — production initiated!" : `Need ${required - count} more interest votes to unlock shipping.`}
             </span>
           </div>
         )}
@@ -243,7 +373,7 @@ function ProductCard({ product, onOpenInterest }) {
                 key={s}
                 type="button"
                 onClick={() => setSelectedSize(s)}
-                className="px-2.5 py-1 rounded-md text-[11.5px] transition-colors duration-200"
+                className="px-2.5 py-1 rounded-md text-[11.5px] font-medium transition-colors duration-200"
                 style={
                   selectedSize === s
                     ? { background: tokens.ink, color: tokens.paper }
@@ -258,10 +388,10 @@ function ProductCard({ product, onOpenInterest }) {
 
         <button
           onClick={() => onOpenInterest(product, selectedSize)}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[12.5px] transition-colors duration-200 w-full justify-center"
-          style={{ background: "transparent", color: tokens.ink, border: `1px solid ${tokens.line}` }}
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[13px] font-medium transition-all duration-200 w-full justify-center shadow-sm hover:shadow"
+          style={{ background: tokens.ink, color: tokens.paper }}
         >
-          <Heart size={13} /> I'm interested
+          <Heart size={14} className="fill-current text-rose-400" /> Express Interest
         </button>
       </div>
     </div>
@@ -303,17 +433,17 @@ function InterestModal({ product, selectedSize, onClose, onSubmit }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-5"
-      style={{ background: "rgba(32,30,27,0.5)" }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-5 backdrop-blur-sm"
+      style={{ background: "rgba(32,30,27,0.55)" }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div
-        className="w-full rounded-2xl p-7 relative"
+        className="w-full rounded-2xl p-7 relative shadow-2xl"
         style={{ background: tokens.card, maxWidth: "26rem", border: `1px solid ${tokens.line}` }}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
           style={{ color: tokens.inkMuted }}
           aria-label="Close"
         >
@@ -322,31 +452,33 @@ function InterestModal({ product, selectedSize, onClose, onSubmit }) {
 
         {submitted ? (
           <div className="text-center py-4">
-            <Check size={22} style={{ color: tokens.accent, margin: "0 auto 14px" }} />
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: 18, fontWeight: 600, color: tokens.ink, marginBottom: 8 }}>
-              Interest recorded
+            <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+              <Check size={24} />
+            </div>
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: 20, fontWeight: 700, color: tokens.ink, marginBottom: 8 }}>
+              Interest Registered 🚀
             </h3>
             <p className="text-[13.5px]" style={{ color: tokens.inkMuted, lineHeight: 1.6 }}>
-              We'll email <strong style={{ color: tokens.ink }}>{form.email}</strong> the moment{" "}
-              <strong style={{ color: tokens.ink }}>{product.name}</strong> unlocks
-              {selectedSize ? ` in size ${selectedSize}` : ""}.
+              Thank you! We'll email <strong style={{ color: tokens.ink }}>{form.email}</strong> as soon as{" "}
+              <strong style={{ color: tokens.ink }}>{product.name}</strong> passes its interest goal
+              {selectedSize ? ` for size ${selectedSize}` : ""}.
             </p>
             <button
               onClick={onClose}
-              className="mt-6 px-6 py-2.5 rounded-full text-[13px]"
-              style={{ background: tokens.ink, color: tokens.paper, fontWeight: 500 }}
+              className="mt-6 px-6 py-2.5 rounded-full text-[13px] font-semibold"
+              style={{ background: tokens.ink, color: tokens.paper }}
             >
               Done
             </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: 18, fontWeight: 600, color: tokens.ink, marginBottom: 6 }}>
-              Register your interest
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: 20, fontWeight: 700, color: tokens.ink, marginBottom: 6 }}>
+              Register Your Interest
             </h3>
             <p className="text-[13px] mb-5" style={{ color: tokens.inkMuted, lineHeight: 1.6 }}>
-              For <strong style={{ color: tokens.ink }}>{product.name}</strong>
-              {selectedSize ? ` · size ${selectedSize}` : ""}. We'll only reach out about this drop.
+              Help unlock <strong style={{ color: tokens.ink }}>{product.name}</strong>
+              {selectedSize ? ` (Size ${selectedSize})` : ""}. You'll be notified when pre-orders open.
             </p>
 
             {error && (
@@ -359,43 +491,43 @@ function InterestModal({ product, selectedSize, onClose, onSubmit }) {
               <input
                 type="text"
                 required
-                placeholder="Full name"
+                placeholder="Full name *"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg text-[13.5px] outline-none"
-                style={{ background: tokens.paperSoft, border: `1px solid ${tokens.line}`, color: tokens.ink }}
+                className="w-full px-4 py-2.5 rounded-xl text-[13.5px] outline-none border"
+                style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }}
               />
               <input
                 type="email"
                 required
-                placeholder="Email address"
+                placeholder="Email address *"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg text-[13.5px] outline-none"
-                style={{ background: tokens.paperSoft, border: `1px solid ${tokens.line}`, color: tokens.ink }}
+                className="w-full px-4 py-2.5 rounded-xl text-[13.5px] outline-none border"
+                style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }}
               />
               <input
                 type="tel"
                 placeholder="Phone / WhatsApp (optional)"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg text-[13.5px] outline-none"
-                style={{ background: tokens.paperSoft, border: `1px solid ${tokens.line}`, color: tokens.ink }}
+                className="w-full px-4 py-2.5 rounded-xl text-[13.5px] outline-none border"
+                style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }}
               />
             </div>
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-[13.5px]"
-              style={{ background: tokens.ink, color: tokens.paper, fontWeight: 500, opacity: submitting ? 0.7 : 1 }}
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-[13.5px] font-semibold"
+              style={{ background: tokens.ink, color: tokens.paper, opacity: submitting ? 0.7 : 1 }}
             >
               {submitting ? (
                 <>
                   <Loader2 size={14} className="animate-spin" /> Submitting…
                 </>
               ) : (
-                "Submit interest"
+                "Submit Interest Vote"
               )}
             </button>
           </form>
@@ -411,7 +543,7 @@ function GridSkeleton() {
     <div className="max-w-6xl mx-auto px-6 md:px-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {Array.from({ length: 6 }).map((_, i) => (
         <div key={i} className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${tokens.line}` }}>
-          <div style={{ height: 190, background: tokens.paperSoft }} />
+          <div style={{ height: 210, background: tokens.paperSoft }} />
           <div className="p-5 space-y-2.5">
             <div className="h-2.5 rounded" style={{ width: "40%", background: tokens.paperSoft }} />
             <div className="h-3.5 rounded" style={{ width: "70%", background: tokens.paperSoft }} />
@@ -431,7 +563,7 @@ function ErrorState({ message, onRetry }) {
       </p>
       <button
         onClick={onRetry}
-        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px]"
+        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium"
         style={{ border: `1px solid ${tokens.line}`, color: tokens.ink }}
       >
         <RefreshCw size={13} /> Try again
@@ -440,11 +572,11 @@ function ErrorState({ message, onRetry }) {
   );
 }
 
-function EmptyState() {
+function EmptyState({ searchQuery }) {
   return (
     <div className="max-w-6xl mx-auto px-6 md:px-8 text-center py-16">
       <p className="text-[14px]" style={{ color: tokens.inkMuted }}>
-        No products in this category yet — check back soon.
+        {searchQuery ? `No products matching "${searchQuery}".` : "No products in this category yet — check back soon."}
       </p>
     </div>
   );
@@ -453,6 +585,7 @@ function EmptyState() {
 /* --------------------------------- App --------------------------------- */
 export default function IndianSpaceHubStoreLive() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const { products, loading, error, refetch, submitInterest } = useMerchandise(activeCategory);
   const [modalState, setModalState] = useState(null); // { product, size }
 
@@ -461,10 +594,21 @@ export default function IndianSpaceHubStoreLive() {
     return ["All", ...Array.from(set)];
   }, [products]);
 
+  const filteredProducts = useMemo(() => {
+    if (!searchQuery.trim()) return products;
+    const q = searchQuery.toLowerCase();
+    return products.filter(
+      (p) =>
+        p.name?.toLowerCase().includes(q) ||
+        p.description?.toLowerCase().includes(q) ||
+        p.category?.toLowerCase().includes(q)
+    );
+  }, [products, searchQuery]);
+
   return (
-    <div style={{ background: tokens.paper, minHeight: "100%", fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ background: tokens.paper, minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
         @keyframes ish-live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
         @keyframes spin { to { transform: rotate(360deg); } }
         .animate-spin { animation: spin 0.8s linear infinite; }
@@ -473,18 +617,34 @@ export default function IndianSpaceHubStoreLive() {
         input:focus { border-color: ${tokens.accent} !important; }
       `}</style>
 
-      <Nav categories={categories} active={activeCategory} onChange={setActiveCategory} />
+      <Nav
+        categories={categories}
+        active={activeCategory}
+        onChange={setActiveCategory}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
+
       <Hero />
 
       <section id="collection" className="pb-24 md:pb-32">
         <CategoryTabsMobile categories={categories} active={activeCategory} onChange={setActiveCategory} />
 
+        {searchQuery && (
+          <div className="max-w-6xl mx-auto px-6 md:px-8 mb-6 flex items-center justify-between text-[13px]" style={{ color: tokens.inkMuted }}>
+            <span>Showing results for "<strong>{searchQuery}</strong>" ({filteredProducts.length} items)</span>
+            <button onClick={() => setSearchQuery("")} className="underline text-stone-500 hover:text-stone-800">
+              Clear search
+            </button>
+          </div>
+        )}
+
         {loading && <GridSkeleton />}
         {!loading && error && <ErrorState message={error} onRetry={refetch} />}
-        {!loading && !error && products.length === 0 && <EmptyState />}
-        {!loading && !error && products.length > 0 && (
+        {!loading && !error && filteredProducts.length === 0 && <EmptyState searchQuery={searchQuery} />}
+        {!loading && !error && filteredProducts.length > 0 && (
           <div className="max-w-6xl mx-auto px-6 md:px-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {products.map((p) => (
+            {filteredProducts.map((p) => (
               <ProductCard
                 key={p.id}
                 product={p}
@@ -498,16 +658,22 @@ export default function IndianSpaceHubStoreLive() {
       <footer style={{ borderTop: `1px solid ${tokens.line}` }}>
         <div className="max-w-6xl mx-auto px-6 md:px-8 py-10 flex flex-col gap-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <Rocket size={14} style={{ color: tokens.accent, transform: "rotate(45deg)" }} strokeWidth={1.8} />
+            <div className="flex items-center gap-2.5">
+              <img src="/indian_space_hub_logo.png" alt="Indian Space Hub Logo" className="h-6 w-6 object-contain" />
               <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 600, fontSize: 15, color: tokens.ink }}>
                 Indian Space Hub Store
               </span>
             </div>
             <div className="flex items-center gap-6 text-[13px]" style={{ color: tokens.inkMuted }}>
-              <a href="#" style={{ color: tokens.inkMuted }}>About</a>
-              <a href="#" style={{ color: tokens.inkMuted }}>Privacy</a>
-              <a href="#" style={{ color: tokens.inkMuted }}>Contact</a>
+              <a href="https://indianspacehub.com" target="_blank" rel="noopener noreferrer" style={{ color: tokens.inkMuted }}>
+                About Hub
+              </a>
+              <a href="/llms.txt" target="_blank" style={{ color: tokens.inkMuted }}>
+                LLM Info
+              </a>
+              <a href="/sitemap.xml" target="_blank" style={{ color: tokens.inkMuted }}>
+                Sitemap
+              </a>
             </div>
             <span className="text-[12px]" style={{ color: tokens.inkFaint }}>
               © {new Date().getFullYear()} Indian Space Hub Store
