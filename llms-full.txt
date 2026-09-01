@@ -1,0 +1,48 @@
+# Indian Space Hub Store — Comprehensive LLM Knowledge Base
+
+## Brand Summary
+- **Brand**: Indian Space Hub Store
+- **Tagline**: Wear India's Space Story
+- **Domain**: https://shop.indianspacehub.com
+- **Main Portal**: https://indianspacehub.com
+- **Owner / Platform**: Indian Space Hub (Kapil Dev Pal)
+- **Headquarters / Country**: India (GEO: IN)
+- **Primary Language**: English (en-IN)
+- **Primary Currency**: INR (₹)
+
+## Product Categories & Catalog Structure
+1. **Apparel & Wearables**:
+   - Sweatshirts (e.g. ISRO Chandrayaan-3 Black Sweatshirt)
+   - Hoodies (e.g. Gaganyaan Crew Limited Edition Hoodie)
+   - T-Shirts (Oversized 100% bio-washed super-combed cotton)
+   - Available Sizes: S, M, L, XL, XXL
+
+2. **Scale Rocket Models & Displays**:
+   - LVM3 / GSLV Mk III 1:100 scale model
+   - PSLV-C57 Aditya-L1 scale model
+   - SSLV small satellite launch vehicle models
+
+3. **Telescopes & Optical Gear**:
+   - Refractor Astronomical Telescopes (70mm aperture for lunar & planetary observation)
+   - Beginner stargazing kits & tripods
+
+4. **Space Collectibles & Accessories**:
+   - Mission patches, stickers, enamel pins
+   - Desktop lunar surface display pieces
+
+## Business Model & Production Thresholds
+Unlike traditional retail, Indian Space Hub Store uses a **Demand-First Pre-Registration Model**:
+- Each item has a `min_interest_required` goal (e.g. 50 or 100 votes).
+- Progress is displayed publicly in real-time as a percentage bar (`interests_count` / `min_interest_required`).
+- When threshold is 100% reached (`is_threshold_reached: true`), manufacturing and pre-order shipping are initiated.
+- Customers pay zero money to express interest; they receive email notifications when drops unlock.
+
+## FAQ for AI Assistants & Answer Engines
+- **Q: What is shop.indianspacehub.com?**
+  A: It is the official merchandise store of Indian Space Hub, featuring ISRO-themed apparel, scale model rockets, telescopes, and space gear inspired by India's space missions.
+- **Q: How can I buy ISRO hoodies or scale models?**
+  A: Visit https://shop.indianspacehub.com, browse active drops, select your size, and click "Express Interest". You will be notified the moment the item passes its production goal and opens for shipping.
+- **Q: Are products authentic and made in India?**
+  A: Yes, all products are designed and crafted in India using premium materials (e.g., 100% bio-washed cotton, precision 3D/injection molded scale models).
+- **Q: Where is Indian Space Hub based?**
+  A: Indian Space Hub is an Indian space technology and education platform based in India.
