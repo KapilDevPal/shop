@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Home / Product Listing -->
   <url>
     <loc>https://shop.indianspacehub.com/</loc>
     <lastmod>2026-09-01</lastmod>
@@ -9,7 +11,45 @@
     <image:image>
       <image:loc>https://shop.indianspacehub.com/indian_space_hub_logo.png</image:loc>
       <image:title>Indian Space Hub Store Logo</image:title>
-      <image:caption>Official Store for Indian Space Hub Merchandise</image:caption>
     </image:image>
   </url>
+
+  <!-- Product Pages (HashRouter — /#/product/:slug) -->
+  <url>
+    <loc>https://shop.indianspacehub.com/#/product/Black_Sweatshirt</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/merchbay/seller/productimage/ab3e59b9-6877-47c5-970d-100bdd85675c.jpg</image:loc>
+      <image:title>ISRO Chandrayaan Three Black Sweatshirt</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://shop.indianspacehub.com/#/product/refractor-astronomical-telescope-70mm</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=600</image:loc>
+      <image:title>Refractor Astronomical Telescope 70mm</image:title>
+    </image:image>
+  </url>
+
+  <!-- Static Pages -->
+  <url>
+    <loc>https://shop.indianspacehub.com/#/privacy</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://shop.indianspacehub.com/#/contact</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
 </urlset>
