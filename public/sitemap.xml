@@ -14,26 +14,26 @@
     </image:image>
   </url>
 
-  <!-- Product Pages (HashRouter — /#/product/:slug) -->
+  <!-- Live API Product Pages -->
   <url>
-    <loc>https://shop.indianspacehub.com/#/product/Black_Sweatshirt</loc>
+    <loc>https://shop.indianspacehub.com/#/product/Not_Lost._Just_Orbiting%E2%80%94Unisex_Oversized_T_Shirt</loc>
     <lastmod>2026-09-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://ik.imagekit.io/merchbay/seller/productimage/ab3e59b9-6877-47c5-970d-100bdd85675c.jpg</image:loc>
-      <image:title>ISRO Chandrayaan Three Black Sweatshirt</image:title>
+      <image:loc>https://i.pinimg.com/736x/8c/22/2f/8c222f67ba04e484d03ef0a94aa33982.jpg</image:loc>
+      <image:title>Not Lost. Just Orbiting. — Unisex Premium Oversized T-Shirt</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://shop.indianspacehub.com/#/product/refractor-astronomical-telescope-70mm</loc>
+    <loc>https://shop.indianspacehub.com/#/product/INDIAN%20SAPCE%20HUB%20-%20Premium%20Oversized%20Oat%20T-Shirt</loc>
     <lastmod>2026-09-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=600</image:loc>
-      <image:title>Refractor Astronomical Telescope 70mm</image:title>
+      <image:loc>https://i.pinimg.com/736x/4d/64/42/4d644227794e088b3340ef40800959c2.jpg</image:loc>
+      <image:title>INDIAN SAPCE HUB - Oversized Oat T-Shirt</image:title>
     </image:image>
   </url>
 
@@ -49,14 +49,14 @@
     <loc>https://shop.indianspacehub.com/#/privacy</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://shop.indianspacehub.com/#/contact</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.5</priority>
   </url>
 
 </urlset>

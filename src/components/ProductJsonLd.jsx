@@ -13,11 +13,13 @@ export default function ProductJsonLd({ product }) {
     : "https://schema.org/PreOrder";
 
   const image = product.thumbnail_url || product.images?.[0] || "";
+  const safeSlug = encodeURI(product.slug || "");
+  const productUrl = `https://shop.indianspacehub.com/#/product/${safeSlug}`;
 
   const jsonLd = {
     "@context": "https://schema.org/",
     "@type": "Product",
-    "@id": `https://shop.indianspacehub.com/#/product/${product.slug}`,
+    "@id": productUrl,
     name: product.name,
     description: product.description || product.seo_description || product.name,
     image: product.images || [image],
@@ -27,10 +29,10 @@ export default function ProductJsonLd({ product }) {
       "@type": "Brand",
       name: product.brand || "Indian Space Hub",
     },
-    url: `https://shop.indianspacehub.com/#/product/${product.slug}`,
+    url: productUrl,
     offers: {
       "@type": "Offer",
-      url: `https://shop.indianspacehub.com/#/product/${product.slug}`,
+      url: productUrl,
       priceCurrency: "INR",
       price: String(parseFloat(product.price || "0").toFixed(2)),
       priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1))

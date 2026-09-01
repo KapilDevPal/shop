@@ -76,16 +76,38 @@ export function useProduct(slug) {
     setLoading(true);
     setError(null);
 
-    fetch(`${API_BASE}/space/store_products/${slug}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Product not found (${res.status})`);
-        return res.json();
+    const cleanSlug = decodeURIComponent(slug);
+    const encodedSlugForApi = encodeURIComponent(cleanSlug).replace(/\./g, "%2E");
+
+    fetch(`${API_BASE}/space/store_products/${encodedSlugForApi}`)
+      .then(async (res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        // Fallback: If single product endpoint returns 404, fetch all products and find match
+        const listRes = await fetch(`${API_BASE}/space/store_products?is_merchandise=true&per_page=100`);
+        if (!listRes.ok) throw new Error(`Product not found (${res.status})`);
+        const listJson = await listRes.json();
+        const products = listJson.data || [];
+        const found = products.find(
+          (p) =>
+            p.slug === slug ||
+            p.slug === cleanSlug ||
+            decodeURIComponent(p.slug) === cleanSlug ||
+            encodeURIComponent(p.slug) === encodeURIComponent(cleanSlug) ||
+            p.slug.toLowerCase() === cleanSlug.toLowerCase()
+        );
+        if (found) {
+          const relatedProducts = products.filter((p) => p.id !== found.id);
+          return { data: found, related: relatedProducts };
+        }
+        throw new Error(`Product not found (${res.status})`);
       })
       .then((json) => {
         setProduct(json.data || json);
         setRelated(json.related || []);
       })
-      .catch((err) => setError(err.message))
+      .catch((err) => setError(err.message || "Product not found."))
       .finally(() => setLoading(false));
   }, [slug]);
 

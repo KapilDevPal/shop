@@ -38,6 +38,13 @@ function useSeoMeta({ title, description, image, url }) {
     }
     if (url) {
       setMeta("og:url", url, true);
+      let canonical = document.querySelector("link[rel='canonical']");
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.setAttribute("rel", "canonical");
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute("href", url);
     }
   }, [title, description, image, url]);
 }
@@ -121,6 +128,9 @@ export default function ProductPage() {
     }
   }, [product]);
 
+  const safeSlug = encodeURI(slug || "");
+  const canonicalUrl = `https://shop.indianspacehub.com/#/product/${safeSlug}`;
+
   // Dynamic SEO
   useSeoMeta({
     title: product
@@ -130,11 +140,11 @@ export default function ProductPage() {
       ? product.seo_description || product.description || `Buy ${product.name} at Indian Space Hub Store.`
       : "",
     image: product?.thumbnail_url || product?.images?.[0] || "",
-    url: `https://shop.indianspacehub.com/#/product/${slug}`,
+    url: canonicalUrl,
   });
 
   const handleShare = async () => {
-    const url = `https://shop.indianspacehub.com/#/product/${slug}`;
+    const url = canonicalUrl;
     if (navigator.share) {
       await navigator.share({ title: product?.name, url });
     } else {
