@@ -140,8 +140,9 @@ export default function Home() {
                 Indian Space Hub Store
               </span>
             </div>
-            <div className="flex items-center gap-6 text-[13px]" style={{ color: tokens.inkMuted }}>
+            <div className="flex flex-wrap items-center gap-6 text-[13px]" style={{ color: tokens.inkMuted }}>
               <a href="mailto:crew@indianspacehub.com" style={{ color: tokens.inkMuted }}>crew@indianspacehub.com</a>
+              <a href="/#/refund-policy" style={{ color: tokens.inkMuted }}>Return Policy</a>
               <a href="/#/contact" style={{ color: tokens.inkMuted }}>Contact</a>
               <a href="/#/privacy" style={{ color: tokens.inkMuted }}>Privacy</a>
               <a href="/sitemap.xml" target="_blank" style={{ color: tokens.inkMuted }}>Sitemap</a>

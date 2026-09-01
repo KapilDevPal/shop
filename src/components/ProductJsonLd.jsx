@@ -78,8 +78,11 @@ export default function ProductJsonLd({ product }) {
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",
         applicableCountry: "IN",
-        returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
-        merchantReturnDays: 0,
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 7,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn",
+        merchantReturnLink: "https://shop.indianspacehub.com/#/refund-policy",
       },
     },
     additionalProperty: product.available_sizes?.map((s) => ({

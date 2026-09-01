@@ -151,6 +151,7 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
 
             {/* Nav Links */}
             <div className="hidden md:flex items-center gap-3 text-[13px]" style={{ color: tokens.inkMuted }}>
+              <Link to="/refund-policy" style={{ color: tokens.inkMuted }} className="hover:text-stone-900 transition-colors">Return Policy</Link>
               <Link to="/contact" style={{ color: tokens.inkMuted }} className="hover:text-stone-900 transition-colors">Contact</Link>
               <Link to="/privacy" style={{ color: tokens.inkMuted }} className="hover:text-stone-900 transition-colors">Privacy</Link>
             </div>
@@ -199,7 +200,8 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
                 </div>
               </>
             )}
-            <div className="flex gap-4 text-[13px] pt-1 border-t" style={{ borderColor: tokens.line, color: tokens.inkMuted }}>
+            <div className="flex flex-wrap gap-4 text-[13px] pt-2 border-t" style={{ borderColor: tokens.line, color: tokens.inkMuted }}>
+              <Link to="/refund-policy" onClick={() => setMobileOpen(false)} style={{ color: tokens.inkMuted }}>Return Policy</Link>
               <Link to="/contact" onClick={() => setMobileOpen(false)} style={{ color: tokens.inkMuted }}>Contact</Link>
               <Link to="/privacy" onClick={() => setMobileOpen(false)} style={{ color: tokens.inkMuted }}>Privacy</Link>
             </div>
