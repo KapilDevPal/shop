@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Search, Menu, X, ExternalLink, Instagram, Linkedin } from "lucide-react";
+import { Search, Menu, X, ExternalLink, Instagram, Linkedin, ShieldCheck, Mail, Lock, RotateCcw } from "lucide-react";
 import { tokens } from "../tokens.js";
 
 export const INSTAGRAM_URL = "https://www.instagram.com/isro.unoffical";
@@ -8,7 +8,7 @@ export const LINKEDIN_URL = "https://www.linkedin.com/company/isro-indian-space-
 
 export default function Nav({ categories = [], active = "All", onChange, searchQuery = "", onSearchChange }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -17,10 +17,10 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
       {/* Top Announcement Bar */}
       <div
         style={{ background: tokens.ink, color: tokens.paperSoft }}
-        className="text-[11.5px] py-1.5 px-4"
+        className="text-[11px] sm:text-[11.5px] py-1.5 px-3 sm:px-4"
       >
-        <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 overflow-hidden">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <span className="flex h-2 w-2 shrink-0 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -29,32 +29,29 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
               Indian Space Hub · The New Era of Indian Space
             </span>
           </div>
-          <div className="hidden sm:flex items-center gap-3 shrink-0">
-            <span className="text-white/40">|</span>
-            <a
-              href="https://indianspacehub.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-amber-400 transition-colors text-[11px]"
-            >
-              Main Hub <ExternalLink size={10} />
-            </a>
-          </div>
+          <a
+            href="https://indianspacehub.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1 hover:text-amber-400 transition-colors text-[11px] shrink-0"
+          >
+            Main Hub <ExternalLink size={10} />
+          </a>
         </div>
       </div>
 
-      {/* Main Responsive Navbar */}
+      {/* Main Responsive Header */}
       <header
         className="sticky top-0 z-40 transition-all duration-200"
         style={{
-          background: "rgba(246,244,239,0.95)",
+          background: "rgba(246,244,239,0.96)",
           backdropFilter: "blur(16px)",
           borderBottom: `1px solid ${tokens.line}`,
         }}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-2.5 flex items-center justify-between gap-3">
-          {/* Brand Logo & Title */}
-          <Link to="/" className="flex items-center gap-2.5 shrink-0 group min-w-0">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 md:px-8 py-2.5 flex items-center justify-between gap-2 overflow-hidden">
+          {/* Brand Identity */}
+          <Link to="/" className="flex items-center gap-2 shrink min-w-0 group">
             <div
               className="relative overflow-hidden rounded-xl border p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105 shrink-0"
               style={{ background: tokens.card, borderColor: tokens.line }}
@@ -66,21 +63,21 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
               />
             </div>
             <div className="flex flex-col min-w-0">
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
                 <span
                   style={{
                     fontFamily: "'Fraunces', serif",
                     fontWeight: 700,
-                    fontSize: "1.05rem",
+                    fontSize: "1rem",
                     color: tokens.ink,
                     letterSpacing: "-0.02em",
                   }}
-                  className="truncate"
+                  className="truncate sm:text-[1.1rem]"
                 >
                   Indian Space Hub
                 </span>
                 <span
-                  className="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider shrink-0"
+                  className="px-1.5 py-0.5 rounded-full text-[8.5px] sm:text-[9.5px] font-extrabold uppercase tracking-wider shrink-0"
                   style={{
                     background: tokens.accentSoft,
                     color: tokens.accent,
@@ -90,16 +87,16 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
                   STORE
                 </span>
               </div>
-              <span className="text-[10.5px] hidden md:block" style={{ color: tokens.inkMuted }}>
+              <span className="text-[10px] hidden xl:block" style={{ color: tokens.inkMuted }}>
                 The New Era of Indian Space · Wear India's Space Story
               </span>
             </div>
           </Link>
 
-          {/* Desktop Category Navigation Pills (Only on Home) */}
+          {/* Desktop Category Navigation Pills (XL Screens only) */}
           {isHome && categories.length > 0 && (
             <nav
-              className="hidden lg:flex items-center gap-1 p-1 rounded-full border shadow-inner"
+              className="hidden xl:flex items-center gap-1 p-1 rounded-full border shadow-inner shrink-0"
               style={{ background: tokens.paperSoft, borderColor: tokens.line }}
             >
               {categories.map((c) => (
@@ -123,63 +120,71 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
             </nav>
           )}
 
-          {/* Right Action Controls */}
-          <div className="flex items-center gap-2 shrink-0">
-            {/* Search Input (Desktop) */}
-            {isHome && (
-              <div className="hidden sm:flex relative items-center">
-                <Search
-                  size={14}
-                  className="absolute left-3 pointer-events-none"
-                  style={{ color: tokens.inkFaint }}
-                />
-                <input
-                  type="text"
-                  placeholder="Search store..."
-                  value={searchQuery}
-                  onChange={(e) => onSearchChange?.(e.target.value)}
-                  className="pl-8 pr-7 py-1.5 rounded-full text-[12px] outline-none transition-all duration-200 w-36 md:w-44 lg:w-48 focus:w-56 border"
-                  style={{
-                    background: tokens.card,
-                    borderColor: tokens.line,
-                    color: tokens.ink,
-                  }}
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => onSearchChange?.("")}
-                    className="absolute right-2.5 p-0.5 rounded-full text-stone-400 hover:text-stone-700"
-                  >
-                    <X size={12} />
-                  </button>
-                )}
-              </div>
-            )}
+          {/* Desktop Search Bar (XL Screens only) */}
+          {isHome && (
+            <div className="hidden xl:flex relative items-center shrink-0">
+              <Search
+                size={14}
+                className="absolute left-3 pointer-events-none"
+                style={{ color: tokens.inkFaint }}
+              />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => onSearchChange?.(e.target.value)}
+                className="pl-8 pr-7 py-1.5 rounded-full text-[12px] outline-none transition-all duration-200 w-44 focus:w-56 border"
+                style={{
+                  background: tokens.card,
+                  borderColor: tokens.line,
+                  color: tokens.ink,
+                }}
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => onSearchChange?.("")}
+                  className="absolute right-2.5 p-0.5 rounded-full text-stone-400 hover:text-stone-700"
+                >
+                  <X size={12} />
+                </button>
+              )}
+            </div>
+          )}
 
-            {/* Mobile Search Toggle Button */}
+          {/* Desktop Nav Links (XL Screens only) */}
+          <div className="hidden xl:flex items-center gap-3 text-[12.5px] shrink-0" style={{ color: tokens.inkMuted }}>
+            <Link to="/refund-policy" className="hover:text-stone-900 transition-colors">Return Policy</Link>
+            <Link to="/contact" className="hover:text-stone-900 transition-colors">Contact</Link>
+            <Link to="/privacy" className="hover:text-stone-900 transition-colors">Privacy</Link>
+          </div>
+
+          {/* Mobile & Tablet Action Controls (< 1280px / XL) */}
+          <div className="flex xl:hidden items-center gap-1.5 shrink-0">
+            {/* Search Icon Button */}
             {isHome && (
               <button
-                onClick={() => setShowMobileSearch(!showMobileSearch)}
-                className="sm:hidden p-2 rounded-xl border flex items-center justify-center transition-colors"
-                style={{ background: tokens.card, borderColor: tokens.line, color: tokens.ink }}
-                aria-label="Toggle search"
+                onClick={() => setShowSearchInput(!showSearchInput)}
+                className="p-2 rounded-xl border flex items-center justify-center transition-colors"
+                style={{
+                  background: showSearchInput || searchQuery ? tokens.ink : tokens.card,
+                  borderColor: tokens.line,
+                  color: showSearchInput || searchQuery ? tokens.paper : tokens.ink,
+                }}
+                aria-label="Toggle search bar"
               >
                 <Search size={16} />
               </button>
             )}
 
-            {/* Desktop Nav Links */}
-            <div className="hidden md:flex items-center gap-3 text-[12.5px] ml-1" style={{ color: tokens.inkMuted }}>
-              <Link to="/refund-policy" className="hover:text-stone-900 transition-colors">Return Policy</Link>
-              <Link to="/contact" className="hover:text-stone-900 transition-colors">Contact</Link>
-              <Link to="/privacy" className="hover:text-stone-900 transition-colors">Privacy</Link>
-            </div>
-
-            {/* Mobile Navigation Menu Toggle */}
+            {/* Menu Drawer Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-xl border flex items-center justify-center"
-              style={{ background: tokens.card, borderColor: tokens.line, color: tokens.ink }}
+              className="p-2 rounded-xl border flex items-center justify-center transition-colors"
+              style={{
+                background: mobileOpen ? tokens.ink : tokens.card,
+                borderColor: tokens.line,
+                color: mobileOpen ? tokens.paper : tokens.ink,
+              }}
               aria-label="Toggle navigation menu"
             >
               {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -187,46 +192,53 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
           </div>
         </div>
 
-        {/* Mobile Expanded Search Bar */}
-        {isHome && showMobileSearch && (
-          <div className="sm:hidden px-4 py-2 border-t" style={{ background: tokens.card, borderColor: tokens.line }}>
-            <div className="relative flex items-center">
-              <Search size={14} className="absolute left-3 pointer-events-none" style={{ color: tokens.inkFaint }} />
+        {/* Mobile Expandable Search Bar */}
+        {isHome && (showSearchInput || searchQuery) && (
+          <div className="xl:hidden px-3 sm:px-6 py-2.5 border-t" style={{ background: tokens.card, borderColor: tokens.line }}>
+            <div className="relative flex items-center max-w-xl mx-auto">
+              <Search size={15} className="absolute left-3 pointer-events-none" style={{ color: tokens.inkFaint }} />
               <input
                 type="text"
-                autoFocus
-                placeholder="Search ISRO t-shirts, scale models, telescopes..."
+                autoFocus={showSearchInput}
+                placeholder="Search ISRO t-shirts, hoodies, scale models..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange?.(e.target.value)}
-                className="w-full pl-8 pr-8 py-2 rounded-xl text-[13px] outline-none border"
+                className="w-full pl-9 pr-9 py-2 rounded-xl text-[13px] outline-none border"
                 style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }}
               />
-              {searchQuery && (
+              {searchQuery ? (
                 <button
                   onClick={() => onSearchChange?.("")}
-                  className="absolute right-2.5"
+                  className="absolute right-3 p-1 text-stone-500 hover:text-stone-800"
                 >
-                  <X size={14} style={{ color: tokens.inkFaint }} />
+                  <X size={14} />
+                </button>
+              ) : (
+                <button
+                  onClick={() => setShowSearchInput(false)}
+                  className="absolute right-3 text-[11px] font-semibold text-stone-400 hover:text-stone-700"
+                >
+                  CLOSE
                 </button>
               )}
             </div>
           </div>
         )}
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile & Tablet Full Navigation Drawer */}
         {mobileOpen && (
           <div
-            className="lg:hidden px-5 py-4 border-t space-y-4 shadow-xl"
+            className="xl:hidden px-4 sm:px-6 py-4 border-t space-y-4 shadow-2xl max-h-[85vh] overflow-y-auto"
             style={{ background: tokens.card, borderColor: tokens.line }}
           >
-            {/* Mobile Categories */}
+            {/* Category Filter Pills */}
             {isHome && categories.length > 0 && (
               <div>
                 <span
-                  className="text-[11px] font-bold uppercase tracking-wider block mb-2"
+                  className="text-[10.5px] font-bold uppercase tracking-wider block mb-2"
                   style={{ color: tokens.inkFaint }}
                 >
-                  Filter Categories
+                  Categories
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {categories.map((c) => (
@@ -250,42 +262,70 @@ export default function Nav({ categories = [], active = "All", onChange, searchQ
               </div>
             )}
 
-            {/* Mobile Nav Links */}
-            <div className="pt-3 border-t grid gap-2.5 text-[13.5px] font-medium" style={{ borderColor: tokens.line }}>
-              <Link to="/refund-policy" onClick={() => setMobileOpen(false)} style={{ color: tokens.ink }}>
-                Return & Refund Policy
-              </Link>
-              <Link to="/contact" onClick={() => setMobileOpen(false)} style={{ color: tokens.ink }}>
-                Contact Support
-              </Link>
-              <Link to="/privacy" onClick={() => setMobileOpen(false)} style={{ color: tokens.ink }}>
-                Privacy Policy
-              </Link>
+            {/* Quick Navigation Links */}
+            <div className="pt-3 border-t space-y-2" style={{ borderColor: tokens.line }}>
+              <span
+                className="text-[10.5px] font-bold uppercase tracking-wider block mb-2"
+                style={{ color: tokens.inkFaint }}
+              >
+                Quick Links
+              </span>
+              <div className="grid gap-2">
+                <Link
+                  to="/refund-policy"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl border text-[13px] font-medium transition-colors hover:bg-stone-50"
+                  style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }}
+                >
+                  <RotateCcw size={15} style={{ color: tokens.accent }} />
+                  <span>Return & Refund Policy</span>
+                </Link>
+
+                <Link
+                  to="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl border text-[13px] font-medium transition-colors hover:bg-stone-50"
+                  style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }}
+                >
+                  <Mail size={15} style={{ color: tokens.accent }} />
+                  <span>Contact Support (crew@indianspacehub.com)</span>
+                </Link>
+
+                <Link
+                  to="/privacy"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl border text-[13px] font-medium transition-colors hover:bg-stone-50"
+                  style={{ background: tokens.paperSoft, borderColor: tokens.line, color: tokens.ink }}
+                >
+                  <Lock size={15} style={{ color: tokens.accent }} />
+                  <span>Privacy Policy</span>
+                </Link>
+              </div>
             </div>
 
-            {/* Mobile Social Links & Tagline */}
-            <div className="pt-3 border-t flex items-center justify-between gap-3 text-[12px]" style={{ borderColor: tokens.line, color: tokens.inkMuted }}>
-              <span className="italic">The New Era of Indian Space</span>
+            {/* Social Links & Tagline */}
+            <div className="pt-3 border-t flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px]" style={{ borderColor: tokens.line, color: tokens.inkMuted }}>
+              <span className="italic text-center sm:text-left">The New Era of Indian Space</span>
               <div className="flex items-center gap-3">
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="p-1.5 rounded-lg border hover:bg-stone-100 transition-colors"
+                  className="p-2 rounded-xl border hover:bg-stone-100 transition-colors flex items-center gap-1.5 font-medium"
                   style={{ borderColor: tokens.line, color: tokens.ink }}
                 >
-                  <Instagram size={15} />
+                  <Instagram size={15} /> Instagram
                 </a>
                 <a
                   href={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="p-1.5 rounded-lg border hover:bg-stone-100 transition-colors"
+                  className="p-2 rounded-xl border hover:bg-stone-100 transition-colors flex items-center gap-1.5 font-medium"
                   style={{ borderColor: tokens.line, color: tokens.ink }}
                 >
-                  <Linkedin size={15} />
+                  <Linkedin size={15} /> LinkedIn
                 </a>
               </div>
             </div>
